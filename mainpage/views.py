@@ -20,8 +20,8 @@ def index(request):
             for sheet in f.sheets():
                 for rowindex in range(1,sheet.nrows):
                     row = sheet.row_slice(rowindex)
-                    for cell in row:
-                        print(cell.value)
+                    #print(row[0].value())
+                    #Create model and save to database
             return HttpResponse('<h1>Success</h1>')
     else:
         form = TrialBalanceForm()
