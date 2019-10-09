@@ -22,7 +22,7 @@ def index(request):
                     row = sheet.row_slice(rowindex)
                     #print(row[0].value())
                     #Create model and save to database
-            return HttpResponse('<h1>Success</h1>')
+            return HttpResponse('<h1>File uploaded under media folder in project directory/h1>')
     else:
         form = TrialBalanceForm()
     return render(request, 'mainpage/uploadForm.html', {
