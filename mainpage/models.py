@@ -9,8 +9,8 @@ class TrialBalance(models.Model):
     accountSubType = models.CharField(max_length=30)
     accountClass = models.CharField(max_length=30)
     accountSubClass = models.CharField(max_length=30)
-    beginningBalance = models.IntegerField()
-    endingBalance = models.IntegerField()
+    beginningBalance = models.FloatField()
+    endingBalance = models.FloatField()
 
 
 class TrialBalanceFile(models.Model):

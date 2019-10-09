@@ -16,8 +16,10 @@ def index(request):
         if form.is_valid():
             form.save()
             path = os.path.join(settings.MEDIA_ROOT, request.FILES['document'].name.replace(" ", "_"))
-            print(path)
             f = xlrd.open_workbook(path)
+            for sheet in f.sheets():
+                row = sheet.row_slice(0)
+                print(row[0].value)
             return HttpResponse('<h1>Success</h1>')
     else:
         form = TrialBalanceForm()
