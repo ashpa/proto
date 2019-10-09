@@ -20,9 +20,9 @@ def index(request):
             for sheet in f.sheets():
                 for rowindex in range(1,sheet.nrows):
                     row = sheet.row_slice(rowindex)
-                    #print(row[0].value())
+                    print(row[0].value)
                     #Create model and save to database
-            return HttpResponse('<h1>File uploaded under media folder in project directory/h1>')
+            return HttpResponse('<h1>File uploaded under media folder in project directory</h1>')
     else:
         form = TrialBalanceForm()
     return render(request, 'mainpage/uploadForm.html', {
