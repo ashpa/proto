@@ -2,7 +2,7 @@ from django.core.files.storage import FileSystemStorage
 from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import TrialBalanceForm
-from .models import TrialBalanceFile
+from .models import TrialBalance
 from django.conf import settings
 import csv
 import xlrd
@@ -20,8 +20,18 @@ def index(request):
             for sheet in f.sheets():
                 for rowindex in range(1,sheet.nrows):
                     row = sheet.row_slice(rowindex)
-                    print(row[0].value)
-                    #Create model and save to database
+                    entry = TrialBalance(
+                        accountNumber = row[0].value,
+                        account = row[1].value,
+                        AssetType = row[2].value,
+                        accountSubType = row[3].value,
+                        accountClass = row[4].value,
+                        accountSubClass = row[5].value,
+                        beginningBalance = float(row[6].value),
+                        endingBalance = float(row[7].value),
+                    )
+                    entry.save();
+
             return HttpResponse('<h1>File uploaded under media folder in project directory</h1>')
     else:
         form = TrialBalanceForm()

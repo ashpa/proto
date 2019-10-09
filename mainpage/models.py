@@ -5,7 +5,8 @@ from django.forms import ModelForm
 # Create your models here.
 class TrialBalance(models.Model):
     accountNumber = models.CharField(max_length=30)
-    accountAssetType = models.CharField(max_length=30)
+    account = models.CharField(max_length=30)
+    AssetType = models.CharField(max_length=30)
     accountSubType = models.CharField(max_length=30)
     accountClass = models.CharField(max_length=30)
     accountSubClass = models.CharField(max_length=30)
