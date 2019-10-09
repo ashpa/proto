@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .forms import TrialBalanceForm
 from .models import TrialBalanceFile
 from django.conf import settings
+import csv
 import xlrd
 import os
 # Create your views here.
@@ -14,7 +15,7 @@ def index(request):
         form = TrialBalanceForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            path = settings.MEDIA_ROOT + '\\' + request.FILES['document'].name
+            path = os.path.join(settings.MEDIA_ROOT, request.FILES['document'].name.replace(" ", "_"))
             print(path)
             f = xlrd.open_workbook(path)
             return HttpResponse('<h1>Success</h1>')
