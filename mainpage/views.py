@@ -18,8 +18,10 @@ def index(request):
             path = os.path.join(settings.MEDIA_ROOT, request.FILES['document'].name.replace(" ", "_"))
             f = xlrd.open_workbook(path)
             for sheet in f.sheets():
-                row = sheet.row_slice(0)
-                print(row[0].value)
+                for rowindex in range(1,sheet.nrows):
+                    row = sheet.row_slice(rowindex)
+                    for cell in row:
+                        print(cell.value)
             return HttpResponse('<h1>Success</h1>')
     else:
         form = TrialBalanceForm()
